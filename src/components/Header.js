@@ -4,9 +4,8 @@ const Header = () => {
     return (
         <header className="App-header">
         <nav>
-          <h2>Collect</h2>
+          <h2><a href="/">Collect</a></h2>
           <ul>
-            <li><a href="/home">Home</a></li>
             <li><a href="/collections">All collections</a></li>
             <li><a href="/profile">My profile</a></li>
             <li><a href="/create">Create collection</a></li>
