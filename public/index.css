@@ -7,7 +7,7 @@
 
 html {
     height: 100%;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('Seashells.jpg');
+    background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0px;
@@ -73,6 +73,7 @@ header nav ul li a {
 main {
     background-color: transparent;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -96,14 +97,13 @@ main {
     padding: 1em;
     border-radius: 1rem;
     box-shadow: 2px 10px 1.5em 5px black;
-
 }
 
-.container {
+.container, .my-collections {
     display: flex;
 }
 
-.overview {
+.overview, .person {
     width: 200px;
     height: 350px;
     color: white;
@@ -134,3 +134,22 @@ main {
     color: white;
 }
 
+.Profile, .Create {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+    align-items: center;
+    width: auto;
+    height: 550px;
+    background-color: transparent;
+    margin: 1em 3em;
+    padding: 1em;
+    border-radius: 1rem;
+    box-shadow: 2px 10px 1.5em 5px black;
+}
+
+.Create form {
+    display: flex;
+    flex-direction: column;
+}

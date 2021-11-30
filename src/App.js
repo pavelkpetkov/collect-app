@@ -2,6 +2,9 @@
 import Header from "./components/Header";
 import Home from "./components/Home";
 import AllCollections from "./components/AllCollections";
+import Profile from "./components/Profile";
+import Create from "./components/Create";
+
 
 function App() {
   return (
@@ -11,12 +14,14 @@ function App() {
 
       <main className="App-main">
 
-      <Home />
+        <Home />
 
-      <AllCollections />
+        <AllCollections />
 
-        <section className="Profile"></section>
-        <section className="Create"></section>
+        <Profile />
+
+        <Create />
+
         <section className="Login"></section>
         <section className="Register"></section>
       </main>
