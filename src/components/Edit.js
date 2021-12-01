@@ -1,8 +1,8 @@
-const Create = () => {
+const Edit = () => {
 
     return (
-        <section className="Create">
-          <h1>Create collection</h1>
+        <section className="Edit">
+          <h1>Edit collection</h1>
           <article className="container">
           <form action="" method="POST">
             <label>Title</label>
@@ -18,4 +18,4 @@ const Create = () => {
     )
 }
 
-export default Create;
+export default Edit;

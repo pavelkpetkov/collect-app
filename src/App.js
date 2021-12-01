@@ -4,6 +4,9 @@ import Home from "./components/Home";
 import AllCollections from "./components/AllCollections";
 import Profile from "./components/Profile";
 import Create from "./components/Create";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Edit from "./components/Edit";
 
 
 function App() {
@@ -22,8 +25,12 @@ function App() {
 
         <Create />
 
-        <section className="Login"></section>
-        <section className="Register"></section>
+        <Login />
+
+        <Register />
+
+        <Edit />
+
       </main>
       <footer className="App-footer"><p>Pavel Petkov 2021</p></footer>
     </div>
