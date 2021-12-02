@@ -7,8 +7,11 @@ import AllCollections from "./components/AllCollections";
 import Profile from "./components/Profile";
 import Create from "./components/Create";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Register from "./components/Register";
 import Edit from "./components/Edit";
+import Details from "./components/Details";
+
 
 
 function App() {
@@ -25,9 +28,10 @@ function App() {
           <Route path="/profile" exact component={ Profile }/>
           <Route path="/create" exact component={ Create }/>
           <Route path="/login" exact component={ Login }/>
-          <Route path="/logout" exact component={ Create }/>
+          <Route path="/logout" exact component={ Logout }/>
           <Route path="/register" exact component={ Register }/>
           <Route path="/edit" exact component={ Edit }/>
+          <Route path="/details/:collectionId" component={ Details }/>
         </Switch>
 
       </main>
