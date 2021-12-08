@@ -9,9 +9,9 @@ const Header = () => {
             <li><a href="/collections">All collections</a></li>
             <li><a href="/profile">My profile</a></li>
             <li><a href="/create">Create collection</a></li>
-            <li><a href="/logout">Logout</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/auth/register">Register</a></li>
           </ul>
         </nav>
       </header>

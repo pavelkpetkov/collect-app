@@ -1,5 +1,7 @@
 
 import { Route, Switch } from 'react-router-dom';
+import AuthContext from './context/authContext';
+import { useState } from 'react';
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -15,28 +17,43 @@ import Details from "./components/Details";
 
 
 function App() {
+
+  const [user, setUser] = useState( {
+    _id: '',
+    username: '',
+    email: '',
+    accessToken: '',
+  })
+
+  const login = (authData) => {
+    setUser(authData);
+  }
+
+
   return (
-    <div className="App">
+    <AuthContext.Provider value={{ user, login }}>
+      <div className="App">
 
-      <Header />
+        <Header />
 
-      <main className="App-main">
+        <main className="App-main">
 
-        <Switch>
-          <Route path="/" exact component={ Home }/>
-          <Route path="/collections" exact component={ AllCollections }/>
-          <Route path="/profile" exact component={ Profile }/>
-          <Route path="/create" exact component={ Create }/>
-          <Route path="/login" exact component={ Login }/>
-          <Route path="/logout" exact component={ Logout }/>
-          <Route path="/register" exact component={ Register }/>
-          <Route path="/edit" exact component={ Edit }/>
-          <Route path="/details/:collectionId" component={ Details }/>
-        </Switch>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/collections" exact component={AllCollections} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/create" exact component={Create} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/auth/logout" exact component={Logout} />
+            <Route path="/auth/register" exact component={Register} />
+            <Route path="/edit" exact component={Edit} />
+            <Route path="/details/:collectionId" component={Details} />
+          </Switch>
 
-      </main>
-      <footer className="App-footer"><p>Pavel Petkov 2021</p></footer>
-    </div>
+        </main>
+        <footer className="App-footer"><p>Pavel Petkov 2021</p></footer>
+      </div>
+    </AuthContext.Provider>
   );
 }
 
