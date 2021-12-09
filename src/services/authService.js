@@ -1,10 +1,11 @@
-export const register = (username, email, gender, password) => {
+export const register = (username, email, password) => {
+    console.log(username, email, password);
     return fetch('http://localhost:3030/auth/register', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify({ username, email, gender, password })
+        body: JSON.stringify({ username, email, password })
     })
         .then(res => res.json());
 }

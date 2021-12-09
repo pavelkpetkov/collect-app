@@ -6,8 +6,8 @@ const userService = require('../services/user');
 module.exports = () => (req, res, next) => {
     if (parseToken(req, res)) {
         req.auth = {
-            async register(username, email, gender, password) {
-                const token = await register(username, email, gender, password);
+            async register(username, email, password) {
+                const token = await register(username, email, password);
                 res.cookie(COOKIE_NAME, token);
             },
             async login(email, password) {
@@ -22,7 +22,7 @@ module.exports = () => (req, res, next) => {
     }
 };
 
-async function register(username, email, gender, password) {
+async function register(username, email, password) {
 
     const existing = await userService.getUserByEmail(email);
 
@@ -31,7 +31,7 @@ async function register(username, email, gender, password) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await userService.createUser(username, email, gender, hashedPassword);
+    const user = await userService.createUser(username, email, hashedPassword);
 
     // login user
     return generateToken(user);
@@ -55,8 +55,7 @@ function generateToken(userData) {
     return jwt.sign({
         _id: userData._id,
         username: userData.username,
-        email: userData.email,
-        gender: userData.gender
+        email: userData.email
     }, TOKEN_SECRET);
 }
 

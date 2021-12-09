@@ -1,27 +1,15 @@
 
-// const express = require('express');
+
+const bp = require('body-parser');
+
 const cookieParser = require('cookie-parser');
 const authMiddleware = require('../middlewares/auth');
 // const storageMiddleware = require('../middlewares/storage');
 
 module.exports = (app) => {
 
-    // app.engine('hbs', hbs({
-    //     extname: 'hbs',
-    //     helpers: {
-    //         likes: function (value, options) {
-    //             if (value == 1) {
-    //                 return "<span class='likes'>" + options.fn({ amount: value }) + "Like" + "</span>";
-    //             } else {
-    //                 return "<span class='likes'>" + options.fn({ amount: value }) + "Likes" + "</span>";
-    //             }
-    //         }
-    //     }
-    // }));
-
-    // app.set('view engine', 'hbs');
-    // app.use('/static', express.static('static'));
-    // app.use(express.urlencoded({ extended: true }));
+    app.use(bp.json());
+    app.use(bp.urlencoded({ extended: true }));
 
     app.use(cookieParser());
     app.use(authMiddleware());

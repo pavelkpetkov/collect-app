@@ -1,6 +1,6 @@
 
 import * as authService from '../services/authService';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useContext } from 'react';
 import AuthContext from '../context/authContext';
 
@@ -14,9 +14,9 @@ const Register = () => {
     let formData = new FormData(e.currentTarget);
     let username = formData.get('username');
     let email = formData.get('email');
-    let gender = formData.get('gender');
     let password = formData.get('password');
-    authService.register(username, email, gender, password)
+    
+    authService.register(username, email, password)
       .then((authData) => {
         login(authData);
         history.push('/collections');
@@ -28,21 +28,21 @@ const Register = () => {
     <section className="Register">
       <h1>Register</h1>
       <article className="container">
-        <form action="" method="POST" onSubmit={registerSubmitHandler}>
-          <label>userame</label>
+        <form method="POST" onSubmit={registerSubmitHandler}>
+
+          <label htmlFor="username">userame</label>
           <input type="text" id="username" placeholder="Enter name" name="username" />
-          <label>Email address</label>
+
+          <label htmlFor="email">Email address</label>
           <input type="text" id="email" placeholder="Enter email" name="email" />
-          <label>Password</label>
+
+          <label htmlFor="password">Password</label>
           <input type="password" id="password" placeholder="Password" name="password" />
-          <label>Re-Password</label>
+
+          <label htmlFor="rePass">Re-Password</label>
           <input type="password" id="rePassword" placeholder="Re-Password" name="rePass" />
-          <label>Gender</label>
-          <input type="radio" id="female" name="gender" />
-          <label>Female</label>
-          <input type="radio" id="male" name="gender" defaultChecked />
-          <label>Male</label>
-          <p>Already have account? <a href="/auth/login">Login Now!</a></p>
+
+          <p>Already have account? <Link to="/auth/login">Login Now!</Link></p>
           <button type="submit">Submit</button>
         </form>
       </article>
