@@ -22,7 +22,6 @@ function App() {
     _id: '',
     username: '',
     email: '',
-    accessToken: '',
   })
 
   const login = (authData) => {
@@ -43,7 +42,7 @@ function App() {
             <Route path="/collections" exact component={AllCollections} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/create" exact component={Create} />
-            <Route path="/login" exact component={Login} />
+            <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/logout" exact component={Logout} />
             <Route path="/auth/register" exact component={Register} />
             <Route path="/edit" exact component={Edit} />

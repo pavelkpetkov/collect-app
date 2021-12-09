@@ -10,11 +10,12 @@ module.exports = () => (req, res, next) => {
                 const token = await register(username, email, password);
                 res.cookie(COOKIE_NAME, token);
             },
-            async login(email, password) {
-                const token = await login(email, password);
+            async login(username, password) {
+                const token = await login(username, password);
                 res.cookie(COOKIE_NAME, token);
             },
             logout() {
+                console.log('logout here!');
                 res.clearCookie(COOKIE_NAME);
             }
         };
@@ -33,12 +34,13 @@ async function register(username, email, password) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await userService.createUser(username, email, hashedPassword);
 
+    console.log(user);
     // login user
     return generateToken(user);
 }
 
-async function login(email, password) {
-    const user = await userService.getUserByEmail(email);
+async function login(username, password) {
+    const user = await userService.getUserByUsername(username);
     if (!user) {
         throw new Error('No such user')
     }

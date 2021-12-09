@@ -15,11 +15,13 @@ const Register = () => {
     let username = formData.get('username');
     let email = formData.get('email');
     let password = formData.get('password');
-    
+
     authService.register(username, email, password)
       .then((authData) => {
+        console.log('Hello there!');
+        console.log(authData);
         login(authData);
-        history.push('/collections');
+        history.push('/');
       })
 
   }

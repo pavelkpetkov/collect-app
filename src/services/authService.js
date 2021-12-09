@@ -1,9 +1,9 @@
 export const register = (username, email, password) => {
     console.log(username, email, password);
     return fetch('http://localhost:3030/auth/register', {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json"
         },
         body: JSON.stringify({ username, email, password })
     })
@@ -12,9 +12,9 @@ export const register = (username, email, password) => {
 
 export const login = async (username, password) => {
     let res = await fetch('http://localhost:3030/auth/login', {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json"
         },
         body: JSON.stringify({ username, password })
     })
@@ -24,4 +24,8 @@ export const login = async (username, password) => {
     } else {
         throw jsonResult.message;
     }
+}
+
+export const logout = () => {
+    return fetch('http://localhost:3030/auth/logout');
 }

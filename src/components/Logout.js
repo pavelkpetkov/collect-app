@@ -1,22 +1,16 @@
+import * as authService from '../services/authService';
+import { useHistory } from "react-router-dom";
+
+
 const Logout = () => {
+  const history = useHistory();
 
-    console.log('logout')
+    authService.logout().then(
 
-    return (
-        <section className="Login">
-          <h1>Login</h1>
-          <article className="container">
-          <form action="" method="POST">
-            <label>Email address</label>
-            <input type="text" id="email" placeholder="Enter email" name="email" />
-            <label>Password</label>
-            <input type="password" id="password" placeholder="Password" name="password" />
-            <p>Not registered yet? <a href="/auth/register">Register Now!</a></p>
-            <button type="submit">Submit</button>
-          </form>
-          </article>
-        </section>
+      history.push('/')
     )
+
+    return null
 }
 
 export default Logout;
