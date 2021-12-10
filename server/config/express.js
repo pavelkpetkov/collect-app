@@ -8,8 +8,8 @@ const authMiddleware = require('../middlewares/auth');
 
 module.exports = (app) => {
 
-    app.use(bp.json());
     app.use(bp.urlencoded({ extended: true }));
+    app.use(bp.json());
 
     app.use(cookieParser());
     app.use(authMiddleware());

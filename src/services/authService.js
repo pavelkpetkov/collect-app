@@ -7,7 +7,11 @@ export const register = (username, email, password) => {
         },
         body: JSON.stringify({ username, email, password })
     })
-        .then(res => res.json());
+        .then(res => {
+            console.log(res);
+  
+        }
+           );
 }
 
 export const login = async (username, password) => {
@@ -18,6 +22,9 @@ export const login = async (username, password) => {
         },
         body: JSON.stringify({ username, password })
     })
+    console.log(res);
+
+    //Problem is here:
     let jsonResult = await res.json();
     if (res.ok) {
         return jsonResult;

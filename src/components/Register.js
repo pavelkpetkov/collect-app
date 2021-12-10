@@ -16,10 +16,12 @@ const Register = () => {
     let email = formData.get('email');
     let password = formData.get('password');
 
+    console.log('post register!')
+
     authService.register(username, email, password)
       .then((authData) => {
-        console.log('Hello there!');
-        console.log(authData);
+        // console.log('Hello there!');
+        // console.log(authData);
         login(authData);
         history.push('/');
       })
