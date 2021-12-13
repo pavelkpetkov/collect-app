@@ -3,15 +3,26 @@ const router = require('express').Router();
 router.post('/register', async (req, res) => {
         try {
             
-            // console.log('before!');
-            // console.log(req.body);
+            console.log('before!');
+            console.log(req.body);
 
-            await req.auth.register(req.body.username, req.body.email, req.body.password);
-            // console.log('after!');
-            res.end();
+            if (!req.body.username.trim()) {
+                throw new Error('Username is required!');
+            }
+            if (!req.body.email.trim()) {
+                throw new Error('Email is required!');
+            }
+            if (req.body.password.trim().length < 3) {
+                throw new Error('Password must be at least 3 characters!');
+            }
+
+            const userData = await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
+            console.log('after!');
+
+            res.json(userData);
 
         } catch (err) {
-            console.log(err.message);
+            res.status(err.status || 400).json( {message: err.message} );
         }
     }
 );

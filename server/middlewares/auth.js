@@ -28,7 +28,9 @@ async function register(username, email, password) {
     const existing = await userService.getUserByEmail(email);
 
     if (existing) {
-        throw new Error('Email is taken!');
+        const err = new Error('Email is taken!');
+        err.status = 409;
+        throw err;
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -50,7 +52,13 @@ async function login(username, password) {
         throw new Error('Incorect password');
     }
 
-    return generateToken(user);
+    return {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        accessToken: generateToken(user)
+    }
+
 }
 
 function generateToken(userData) {

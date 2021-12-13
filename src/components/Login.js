@@ -26,7 +26,7 @@ const Login = () => {
     <section className="Login">
       <h1>Login</h1>
       <article className="container">
-        <form action="" method="POST" onSubmit={onLoginHandler}>
+        <form method="POST" onSubmit={onLoginHandler}>
           <label>Username</label>
           <input type="text" id="username" placeholder="Enter username" name="username" />
           <label>Password</label>

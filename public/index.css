@@ -84,21 +84,6 @@ main {
     color: white;
 }
 
-.All-collections {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 450px;
-    background-color: transparent;
-    margin: 1em 3em;
-    padding: 1em;
-    border-radius: 1rem;
-    box-shadow: 2px 10px 1.5em 5px black;
-}
-
 .container, .my-collections {
     display: flex;
 }
@@ -138,19 +123,26 @@ button:hover {
     color: white;
 }
 
-.Profile, .Create {
+.Profile, .Create, .Login, .Register, .All-collections {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     color: white;
     align-items: center;
     width: auto;
-    height: 550px;
     background-color: transparent;
     margin: 1em 3em;
     padding: 1em;
     border-radius: 1rem;
-    box-shadow: 2px 10px 1.5em 5px black;
+    box-shadow: 1px 5px 1.50em 5px black;
+}
+
+.Profile, .All-collections {
+    height: 550px;
+}
+
+.Login, .Register, .Create {
+    height: auto;
 }
 
 form {

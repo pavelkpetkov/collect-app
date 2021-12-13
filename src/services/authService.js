@@ -1,17 +1,22 @@
-export const register = (username, email, password) => {
+export const register = async (username, email, password) => {
     console.log(username, email, password);
-    return fetch('http://localhost:3030/auth/register', {
+
+    //Todo:
+    const result = await fetch('http://localhost:3030/auth/register', {
         method: "POST",
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify({ username, email, password })
-    })
-        .then(res => {
-            console.log(res);
-  
-        }
-           );
+    });
+
+    sessionStorage.setItem('username', result.username);
+    sessionStorage.setItem('email', result.email);
+    sessionStorage.setItem('userId', result._id);
+    sessionStorage.setItem('authToken', result.accessToken);
+
+    return result;
 }
 
 export const login = async (username, password) => {
@@ -26,6 +31,7 @@ export const login = async (username, password) => {
 
     //Problem is here:
     let jsonResult = await res.json();
+
     if (res.ok) {
         return jsonResult;
     } else {
