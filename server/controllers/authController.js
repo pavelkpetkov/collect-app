@@ -3,8 +3,7 @@ const router = require('express').Router();
 router.post('/register', async (req, res) => {
         try {
             
-            console.log('before!');
-            console.log(req.body);
+            // console.log(req.body);
 
             if (!req.body.username.trim()) {
                 throw new Error('Username is required!');
@@ -17,7 +16,6 @@ router.post('/register', async (req, res) => {
             }
 
             const userData = await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
-            console.log('after!');
 
             res.json(userData);
 
