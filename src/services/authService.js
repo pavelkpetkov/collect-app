@@ -20,23 +20,21 @@ export const register = async (username, email, password) => {
 }
 
 export const login = async (username, password) => {
-    let res = await fetch('http://localhost:3030/auth/login', {
+    let result = await fetch('http://localhost:3030/auth/login', {
         method: "POST",
         headers: {
             "content-type": "application/json"
         },
         body: JSON.stringify({ username, password })
     })
-    console.log(res);
+    console.log(result);
 
-    //Problem is here:
-    let jsonResult = await res.json();
+    sessionStorage.setItem('username', result.username);
+    sessionStorage.setItem('email', result.email);
+    sessionStorage.setItem('userId', result._id);
+    sessionStorage.setItem('authToken', result.accessToken);
 
-    if (res.ok) {
-        return jsonResult;
-    } else {
-        throw jsonResult.message;
-    }
+    return result;
 }
 
 export const logout = () => {

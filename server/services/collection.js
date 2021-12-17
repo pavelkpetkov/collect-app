@@ -6,7 +6,7 @@ async function getAll() {
 }
 
 async function getById(id) {
-    const collection = await Collection.findById(id).lean();
+    const collection = await Collection.findById(id);
     return collection;
 }
 
@@ -20,10 +20,17 @@ async function deleteCollection(id) {
     return Collection.findByIdAndDelete(id);
 }
 
+async function updateCollection(original, updated) {
+    Object.assign(original, updated);
+    await original.save();
+    return original;
+}
+
 
 module.exports = {
     getAll,
     getById,
     createCollection,
+    updateCollection,
     deleteCollection
 }

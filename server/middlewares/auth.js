@@ -44,12 +44,16 @@ async function register(username, email, password) {
 async function login(username, password) {
     const user = await userService.getUserByUsername(username);
     if (!user) {
-        throw new Error('No such user')
+        const err = new Error('No such user');
+        err.status = 401;
+        throw err;
     }
 
     const hasMatch = await bcrypt.compare(password, user.hashedPassword);
     if (!hasMatch) {
-        throw new Error('Incorect password');
+        const err = new Error('Incorect password');
+        err.status = 401;
+        throw err;
     }
 
     return {
@@ -71,6 +75,7 @@ function generateToken(userData) {
 
 function parseToken(req, res) {
     const token = req.cookies[COOKIE_NAME];
+    //const token = req.headers['x-authorization'];
     if (token) {
         try {
             const userData = jwt.verify(token, TOKEN_SECRET);
@@ -79,7 +84,8 @@ function parseToken(req, res) {
             return true;
         } catch (err) {
             res.clearCookie(COOKIE_NAME);
-            res.redirect('/login');
+            // res.redirect('/login');
+            // res.status(401).json( {message: 'Invalid access token. Please sign in.'});
             return false
         }
     }

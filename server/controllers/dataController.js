@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { getAll, getById, createCollection } = require('../services/collection');
+const { isAuth, isOwner } = require('../middlewares/guards');
+const { getAll, createCollection, updateCollection, deleteCollection } = require('../services/collection');
+const preload = require('../middlewares/preload');
 
 router.get('/', async (req, res) => {
     // console.log('Try get!');
@@ -7,7 +9,7 @@ router.get('/', async (req, res) => {
     res.json(data);
 });
 
-router.post('/', async (req, res) => {
+router.post('/create', isAuth(), async (req, res) => {
 
     const data = {
         title: req.body.title,
@@ -16,9 +18,52 @@ router.post('/', async (req, res) => {
         author: req.user._id,
     }
 
-    const result = await createCollection(data);
+    try {
+        const result = await createCollection(data);
+        res.status(201).json(result);
+    } catch(err) {
+        res.status(err.status || 400).json({ message: err.message });
+    }   
 
-    res.status(201).json(result);
 });
+
+router.get('/details/:id', preload(), async (req, res) => {
+
+    const item = req.data.toObject();
+
+    //console.log(item);
+    //req.owner?
+    item._ownerId = item.author.toString();
+    res.json(item);
+});
+
+router.put('/edit/:id', isAuth(), preload(), isOwner(), async (req, res) => {
+
+    const updated = {
+        title: req.body.title,
+        collectionImage: req.body.collectionImage,
+        description: req.body.description,
+    }
+
+    try {
+        const result = await updateCollection(req.data, updated);
+        res.json(result);
+    } catch(err) {
+        res.status(err.status || 400).json({ message: err.message });
+    } 
+
+});
+
+router.delete('/:id', isAuth(), preload(), isOwner(), async (req, res) => {
+
+    try {
+        await deleteCollection(req.params.id);
+        res.status(204).end();
+    } catch(err) {
+        res.status(err.status || 400).json({ message: err.message });
+    } 
+
+});
+
 
 module.exports = router;

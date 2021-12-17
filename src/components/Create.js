@@ -1,10 +1,18 @@
+
+
 const Create = () => {
+
+  const createSubmitHandler = (e) => {
+    e.preventDefault();
+
+    //Todo
+  }
 
     return (
         <section className="Create">
           <h1>Create collection</h1>
           <article className="container">
-          <form action="" method="POST">
+          <form method="POST" onSubmit={createSubmitHandler}>
             <label>Title</label>
             <input type="text" id="startPoint" name="title" placeholder="Title" />
             <label>Images of your collection</label>
