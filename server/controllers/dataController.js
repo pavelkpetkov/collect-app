@@ -30,7 +30,6 @@ router.post('/create', isAuth(), async (req, res) => {
 router.get('/details/:id', preload(), async (req, res) => {
 
     const item = req.data.toObject();
-
     //console.log(item);
     //req.owner?
     item._ownerId = item.author.toString();

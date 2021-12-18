@@ -1,15 +1,70 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { TOKEN_SECRET, COOKIE_NAME } = require('../config');
 
-async function createUser(username, email, hashedPassword) {
 
+async function register(username, email, password) {
+
+    const existing = await User.findOne({ email });
+
+    if (existing) {
+        const err = new Error('Email is taken!');
+        err.status = 409;
+        throw err;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
         username,
         email,
         hashedPassword
     })
     await user.save();
-    return user;
+    return {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        accessToken: generateToken(user)
+    }
 }
+
+function generateToken(userData) {
+    const token = jwt.sign({
+        _id: userData._id,
+        username: userData.username,
+        email: userData.email
+    }, TOKEN_SECRET);
+
+    return token;
+}
+
+async function login(username, password) {
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+        const err = new Error('No such user!');
+        err.status = 401;
+        throw err;
+    }
+
+    const hasMatch = await bcrypt.compare(password, user.hashedPassword);
+
+    if (!hasMatch) {
+        const err = new Error('Incorect password');
+        err.status = 401;
+        throw err;
+    }
+
+    return {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        accessToken: generateToken(user)
+    }
+}
+
 
 async function getUserByEmail(email) {
     const pattern = new RegExp(`^${email}$`, 'i');
@@ -29,7 +84,8 @@ async function getUserById(id) {
 }
 
 module.exports = {
-    createUser,
+    register,
+    login,
     getUserByEmail,
     getUserByUsername,
     getUserById

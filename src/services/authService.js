@@ -9,8 +9,10 @@ export const register = async (username, email, password) => {
             "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify({ username, email, password })
-    });
+    })
+        .then(res => res.json());
 
+    console.log(`In authService frontEnd the result: ${result}`);
     sessionStorage.setItem('username', result.username);
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('userId', result._id);
@@ -20,13 +22,15 @@ export const register = async (username, email, password) => {
 }
 
 export const login = async (username, password) => {
-    let result = await fetch('http://localhost:3030/auth/login', {
+    const result = await fetch('http://localhost:3030/auth/login', {
         method: "POST",
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify({ username, password })
     })
+        .then(res => res.json());
     console.log(result);
 
     sessionStorage.setItem('username', result.username);
@@ -37,6 +41,10 @@ export const login = async (username, password) => {
     return result;
 }
 
-export const logout = () => {
-    return fetch('http://localhost:3030/auth/logout');
+export const logout = (token) => {
+    return fetch('http://localhost:3030/auth/logout', {
+        headers: {
+            'x-authorization': token,
+        }
+    });
 }

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { register, login } = require('../services/user');
 
 router.post('/register', async (req, res) => {
     try {
@@ -13,8 +14,7 @@ router.post('/register', async (req, res) => {
             throw new Error('Password must be at least 3 characters!');
         }
 
-        const userData = await req.auth.register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
-
+        const userData = await register(req.body.username.trim(), req.body.email.trim(), req.body.password.trim());
         res.json(userData);
 
     } catch (err) {
@@ -25,8 +25,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        // console.log(req.body);
-        const userData = await req.auth.login(req.body.username, req.body.password);
+        const userData = await login(req.body.username, req.body.password);
         res.json(userData);
 
     } catch (err) {
@@ -35,8 +34,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    req.auth.logout();
-    // res.redirect('/');
+    res.status(204).end();
 });
 
 module.exports = router;

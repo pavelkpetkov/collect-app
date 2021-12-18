@@ -17,7 +17,7 @@ const Login = () => {
       .then((authData) => {
         console.log(authData);
         login(authData);
-        history.push('/collections');
+        history.push('/data');
       })
   }
 

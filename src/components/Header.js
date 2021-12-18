@@ -1,21 +1,41 @@
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({
+  username,
+}) => {
 
-    return (
-        <header className="App-header">
-        <nav>
-          <h2><a href="/">Collect</a></h2>
-          <ul>
-            <li><a href="/data">All collections</a></li>
-            <li><a href="/profile">My profile</a></li>
-            <li><a href="/data/create">Create collection</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-            <li><a href="/auth/login">Login</a></li>
-            <li><a href="/auth/register">Register</a></li>
-          </ul>
-        </nav>
-      </header>
-    )
+  let guestNavigation = (
+    <nav>
+      <h2><Link to="/">Collect</Link></h2>
+      <ul>
+        <li><Link to="/data">All collections</Link></li>
+        <li><Link to="/auth/login">Login</Link></li>
+        <li><Link to="/auth/register">Register</Link></li>
+      </ul>
+    </nav>
+  );
+
+  let userNavigation = (
+    <nav>
+      <h2><Link to="/">Collect</Link></h2>
+      <ul>
+        <span>Welcome {username}!</span>
+        <li><Link to="/data">All collections</Link></li>
+        <li><Link to="/profile">My profile</Link></li>
+        <li><Link to="/data/create">Create collection</Link></li>
+        <li><Link to="/auth/logout">Logout</Link></li>
+      </ul>
+    </nav>
+  );
+
+  return (
+    <header className="App-header">
+      {username
+        ? userNavigation
+        : guestNavigation
+      }
+    </header>
+  )
 }
 
 export default Header;

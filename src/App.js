@@ -18,22 +18,32 @@ import Details from "./components/Details";
 
 function App() {
 
-  const [user, setUser] = useState( {
-    _id: '',
-    username: '',
+  const [user, setUser] = useState({
+    accessToken: '',
     email: '',
+    username: '',
+    _id: ''
   })
 
   const login = (authData) => {
     setUser(authData);
   }
 
+  const logout = () => {
+    setUser({
+      accessToken: '',
+      email: '',
+      username: '',
+      _id: ''
+    });
+  }
+
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       <div className="App">
 
-        <Header />
+        <Header username={user.username} />
 
         <main className="App-main">
 
