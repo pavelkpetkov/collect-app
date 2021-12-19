@@ -42,6 +42,12 @@ export const login = async (username, password) => {
 }
 
 export const logout = (token) => {
+    
+  sessionStorage.removeItem('username');
+  sessionStorage.removeItem('email');
+  sessionStorage.removeItem('authToken');
+  sessionStorage.removeItem('userId');
+  
     return fetch('http://localhost:3030/auth/logout', {
         headers: {
             'x-authorization': token,
