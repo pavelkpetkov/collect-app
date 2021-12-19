@@ -3,8 +3,7 @@ export const getAll = async () => {
     const response = await fetch('http://localhost:3030/data');
 
     let collections = await response.json();
-    let result = Object.values(collections);
-    return result;
+    return collections;
 }
 
 export const create = async (data, token) => {

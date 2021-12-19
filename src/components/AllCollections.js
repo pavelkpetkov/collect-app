@@ -1,30 +1,29 @@
+import { useState, useEffect } from "react";
+import * as dataService from '../services/dataService';
+import Card from './Card';
+
 const AllCollections = () => {
 
-    return (
-        <section className="All-collections">
-          <h2>All collections</h2>
-          <article className="container">
-            <div className="overview">
-              <h3>Title</h3>
-              <article>
-                <img alt="Collection" src=""></img>
-              </article>
-              <p>Description</p>
-              <p>Owner</p>
-              <button>Details</button>
-            </div>
-            <div className="overview">
-              <h3>Title</h3>
-              <article>
-                <img alt="Collection" src=""></img>
-              </article>
-              <p>Description</p>
-              <p>Owner</p>
-              <button>Details</button>
-            </div>
-          </article>
-        </section>
-    )
+  const [collections, setCollections] = useState([]);
+
+  useEffect(() => {
+    dataService.getAll()
+      .then(result => {
+        console.log(result);
+        setCollections(result);
+      })
+  }, [])
+
+  return (
+    <section className="All-collections">
+      <h2>All collections</h2>
+      <article className="container">
+
+        {collections.map(x => <Card key={x._id} collection={x} />)}
+
+      </article>
+    </section>
+  )
 }
 
 export default AllCollections;
