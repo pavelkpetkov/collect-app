@@ -20,7 +20,7 @@ function isGuest() {
 function isOwner() {
     return (req, res, next) => {
         const item = req.data;
-        if (req.user._id != item.owner) {
+        if (req.user._id != item.author) {
             res.status(403).json({ message: 'You cannot modify this record!' });
         } else {
             next();

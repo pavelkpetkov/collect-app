@@ -14,14 +14,21 @@ const AllCollections = () => {
   }, [])
 
   return (
-    <section className="All-collections">
-      <h2>All collections</h2>
-      <article className="container">
+    <>
+      {collections.length > 0
+        ? (
+          <section className="All-collections">
+            <h2>All collections</h2>
+            <article className="container">
 
-        {collections.map(x => <Card key={x._id} collection={x} />)}
+              {collections.map(x => <Card key={x._id} collection={x} />)}
 
-      </article>
-    </section>
+            </article>
+          </section>
+        )
+        : <h2 style={{color: "white"}}>No collections yet!</h2>
+      }
+    </>
   )
 }
 

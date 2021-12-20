@@ -24,3 +24,12 @@ export const getOne = (id) => {
     return fetch(`http://localhost:3030/data/details/${id}`)
         .then(res => res.json())
 };
+
+export const remove = (id, token) => {
+    return fetch(`http://localhost:3030/data/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'x-authorization': token
+        }
+    });
+}

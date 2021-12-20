@@ -1,26 +1,32 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 
 import AuthContext from "../context/authContext";
 import * as dataService from '../services/dataService';
 
 const Details = () => {
+    const history = useHistory();
     const { user } = useContext(AuthContext);
     const [collection, setCollection] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
         dataService.getOne(id)
-        .then(result => {
-            setCollection(result);
-        })
+            .then(result => {
+                setCollection(result);
+            })
     }, [id]);
 
     console.log(collection);
 
     const deleteClickHandler = () => {
+        dataService.remove(id, user.accessToken)
+            .then(() => {
+                history.push('/data');
+            })
     }
     const connectButtonClick = () => {
+        
     }
 
     const ownerButtons = (
