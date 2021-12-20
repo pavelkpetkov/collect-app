@@ -19,3 +19,8 @@ export const create = async (data, token) => {
     let result = await response.json();
     return result;
 }
+
+export const getOne = (id) => {
+    return fetch(`http://localhost:3030/data/details/${id}`)
+        .then(res => res.json())
+};

@@ -1,7 +1,7 @@
 
 import { Route, Switch } from 'react-router-dom';
 import AuthContext from './context/authContext';
-import { useState } from 'react';
+import useLocalStorage from './hooks/useLocalStorage';
 
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -14,30 +14,24 @@ import Register from "./components/Register";
 import Edit from "./components/Edit";
 import Details from "./components/Details";
 
-
+const initialAuthState = {
+  accessToken: '',
+  email: '',
+  username: '',
+  _id: ''
+}
 
 function App() {
 
-  const [user, setUser] = useState({
-    accessToken: '',
-    email: '',
-    username: '',
-    _id: ''
-  })
+  const [user, setUser] = useLocalStorage('user', initialAuthState);
 
   const login = (authData) => {
     setUser(authData);
   }
 
   const logout = () => {
-    setUser({
-      accessToken: '',
-      email: '',
-      username: '',
-      _id: ''
-    });
+    setUser(initialAuthState);
   }
-
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

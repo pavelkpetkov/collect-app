@@ -9,7 +9,6 @@ const AllCollections = () => {
   useEffect(() => {
     dataService.getAll()
       .then(result => {
-        console.log(result);
         setCollections(result);
       })
   }, [])

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 
 const Card = ({
     collection
@@ -11,7 +13,7 @@ const Card = ({
             </article>
             <p>{collection.description}</p>
             <p>Owner</p>
-            <button href="/data/details/:id">Details</button>
+            <Link to={`/data/details/${collection._id}`}>Details</Link>
         </div>
     )
 }

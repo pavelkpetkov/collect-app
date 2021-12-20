@@ -89,6 +89,13 @@ main {
     display: flex;
 }
 
+.overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .overview, .person {
     width: 200px;
     height: 350px;
@@ -101,12 +108,12 @@ main {
     text-align: center;
 }
 
-.overview article {
-    width: 200px;
+.overview article img {
+    width: 198px;
     height: 200px;
 }
 
-button {
+button, .overview a, .Details a {
     padding: 5px;
     margin-top: 20px;
     border: 2px solid gray;
@@ -115,7 +122,19 @@ button {
     color: white;
 }
 
+.overview a, .Details a {
+    text-decoration: none;
+}
+
 button:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .5); 
+}
+
+.overview a:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .5); 
+}
+
+.Details a:hover {
     box-shadow: 0 0 11px rgba(33, 33, 33, .5); 
 }
 
@@ -124,7 +143,7 @@ button:hover {
     color: white;
 }
 
-.Profile, .Create, .Login, .Register, .All-collections {
+.Profile, .Create, .Login, .Register, .All-collections, .Details {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -149,4 +168,8 @@ button:hover {
 form {
     display: flex;
     flex-direction: column;
+}
+
+.delete {
+    background-color: red;
 }
