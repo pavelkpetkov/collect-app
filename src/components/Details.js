@@ -26,7 +26,7 @@ const Details = () => {
             })
     }
     const connectButtonClick = () => {
-        
+
     }
 
     const ownerButtons = (
@@ -44,8 +44,8 @@ const Details = () => {
             <article>
                 <img alt="CollectionImage" src={collection.collectionImage}></img>
             </article>
-            <p>Description {collection.description}</p>
-            <p>Owner</p>
+            <p>Description: {collection.description}</p>
+            <p>Owner:</p>
             {user._id && (user._id === collection._ownerId
                 ? ownerButtons
                 : userButtons

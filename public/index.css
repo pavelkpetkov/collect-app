@@ -108,7 +108,7 @@ main {
     text-align: center;
 }
 
-.overview article img {
+.overview article img, .Details article img {
     width: 198px;
     height: 200px;
 }

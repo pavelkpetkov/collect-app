@@ -25,6 +25,19 @@ export const getOne = (id) => {
         .then(res => res.json())
 };
 
+export const update = (id, data, token) => {
+    return fetch(`http://localhost:3030/data/edit/${id}`, {
+        method: 'PUT',
+        headers: {
+            "content-type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            'x-authorization': token
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json());
+}
+
 export const remove = (id, token) => {
     return fetch(`http://localhost:3030/data/${id}`, {
         method: 'DELETE',
