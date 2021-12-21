@@ -71,6 +71,10 @@ header nav ul li a {
     height: 2.5rem;  
 }
 
+.App-footer p {
+    margin-top: 0.75rem;
+}
+
 main {
     background-color: transparent;
     display: flex;
