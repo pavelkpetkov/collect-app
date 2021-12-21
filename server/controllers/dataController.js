@@ -4,7 +4,6 @@ const { getAll, createCollection, updateCollection, deleteCollection } = require
 const preload = require('../middlewares/preload');
 
 router.get('/', async (req, res) => {
-    // console.log('Try get!');
     const data = await getAll();
     res.json(data);
 });

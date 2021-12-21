@@ -1,7 +1,5 @@
 export const register = async (username, email, password) => {
-    console.log(username, email, password);
 
-    //Todo:
     const result = await fetch('http://localhost:3030/auth/register', {
         method: "POST",
         headers: {
@@ -12,7 +10,6 @@ export const register = async (username, email, password) => {
     })
         .then(res => res.json());
 
-    console.log(`In authService frontEnd the result: ${result}`);
     sessionStorage.setItem('username', result.username);
     sessionStorage.setItem('email', result.email);
     sessionStorage.setItem('userId', result._id);
@@ -31,7 +28,6 @@ export const login = async (username, password) => {
         body: JSON.stringify({ username, password })
     })
         .then(res => res.json());
-    console.log(result);
 
     sessionStorage.setItem('username', result.username);
     sessionStorage.setItem('email', result.email);
@@ -54,3 +50,8 @@ export const logout = (token) => {
         }
     });
 }
+
+export const getOwner = (id) => {
+    return fetch(`http://localhost:3030/auth/profile/${id}`)
+        .then(res => res.json())
+};

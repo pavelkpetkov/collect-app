@@ -12,10 +12,10 @@ const Login = () => {
     let formData = new FormData(e.currentTarget);
     let username = formData.get('username');
     let password = formData.get('password');
-    console.log(password);
+
     authService.login(username, password)
       .then((authData) => {
-        console.log(authData);
+        // console.log(authData);
         login(authData);
         history.push('/data');
       })

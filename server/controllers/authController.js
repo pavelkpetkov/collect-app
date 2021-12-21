@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { register, login } = require('../services/user');
+const { register, login, getUserById } = require('../services/user');
 
 router.post('/register', async (req, res) => {
     try {
@@ -35,6 +35,11 @@ router.post('/login', async (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.status(204).end();
+});
+
+router.get('/profile/:id', async (req, res) => {
+    const owner = await getUserById(req.params.id);
+    res.json(owner);
 });
 
 module.exports = router;

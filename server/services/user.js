@@ -1,8 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { TOKEN_SECRET, COOKIE_NAME } = require('../config');
-
+const { TOKEN_SECRET } = require('../config');
 
 async function register(username, email, password) {
 
@@ -64,7 +63,6 @@ async function login(username, password) {
         accessToken: generateToken(user)
     }
 }
-
 
 async function getUserByEmail(email) {
     const pattern = new RegExp(`^${email}$`, 'i');

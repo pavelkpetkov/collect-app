@@ -17,16 +17,15 @@ const Details = () => {
             })
     }, [id]);
 
-    console.log(collection);
-
     const deleteClickHandler = () => {
         dataService.remove(id, user.accessToken)
             .then(() => {
                 history.push('/data');
             })
     }
-    const connectButtonClick = () => {
-
+    const viewOwnerButtonClick = () => {
+        let authorId = collection._ownerId;
+        history.push(`/auth/profile/${authorId}`);
     }
 
     const ownerButtons = (
@@ -36,7 +35,7 @@ const Details = () => {
         </>
     );
 
-    const userButtons = <button className="button" onClick={connectButtonClick}>Message to owner</button>;
+    const userButton = <Link className="button" to="#" onClick={viewOwnerButtonClick}>View owner's profile</Link>;
 
     return (
         <section className="Details">
@@ -45,10 +44,10 @@ const Details = () => {
                 <img alt="CollectionImage" src={collection.collectionImage}></img>
             </article>
             <p>Description: {collection.description}</p>
-            <p>Owner:</p>
+
             {user._id && (user._id === collection._ownerId
                 ? ownerButtons
-                : userButtons
+                : userButton
             )}
         </section>
     )

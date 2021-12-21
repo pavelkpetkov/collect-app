@@ -13,6 +13,8 @@ import Logout from "./components/Logout";
 import Register from "./components/Register";
 import Edit from "./components/Edit";
 import Details from "./components/Details";
+import Owner from "./components/Owner";
+
 
 const initialAuthState = {
   accessToken: '',
@@ -45,6 +47,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/data" exact component={AllCollections} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/auth/profile/:id" exact component={Owner} />
             <Route path="/auth/login" exact component={Login} />
             <Route path="/auth/logout" exact component={Logout} />
             <Route path="/auth/register" exact component={Register} />

@@ -1,7 +1,5 @@
-
 export const getAll = async () => {
     const response = await fetch('http://localhost:3030/data');
-
     let collections = await response.json();
     return collections;
 }

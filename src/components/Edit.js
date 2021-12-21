@@ -33,7 +33,7 @@ const Edit = () => {
 
     dataService.update(id, data, user.accessToken)
     .then(() => {
-        history.push(`/data/details/${id}`);
+        history.push(`/data`);
     })
   }
 

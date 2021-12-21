@@ -1,18 +1,8 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as authService from '../services/authService';
 
-const Card = ({
+const OwnersCard = ({
     collection
 }) => {
-
-    const [owner, setOwner] = useState({});
-    useEffect(() => {
-        authService.getOwner(collection.author)
-            .then(result => {
-                setOwner(result);
-            })
-    }, [collection.author])
 
     return (
         <div className="overview">
@@ -21,10 +11,9 @@ const Card = ({
                 <img alt="CollectionImage" src={collection.collectionImage}></img>
             </article>
             <p>{collection.description}</p>
-            <p>Owner: {owner.username}</p>
             <Link to={`/data/details/${collection._id}`}>Details</Link>
         </div>
     )
 }
 
-export default Card;
+export default OwnersCard;
