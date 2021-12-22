@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import * as dataService from '../services/dataService';
 import AuthContext from "../context/authContext";
 
-
 const Edit = () => {
   const history = useHistory();
   const { user } = useContext(AuthContext);
@@ -51,7 +50,7 @@ const Edit = () => {
   const descriptionChangeHandler = (e) => {
     let currentDescription = e.target.value;
     if (currentDescription.length < 10) {
-      setErrors(state => ({...state, description: 'Description has to be at least 3 characters long'}));
+      setErrors(state => ({...state, description: 'Description has to be at least 10 characters long'}));
     } else {
       setErrors(state => ({...state, description: false}));
     }
@@ -64,13 +63,13 @@ const Edit = () => {
           <form method="POST" onSubmit={editSubmitHandler}>
             <label>Title</label>
             <input type="text" style={{borderColor: errors.title ? 'red' : 'inherit'}} name="title" defaultValue={collection.title} onBlur={titleChangeHandler} />
-            <span className="error" style={{borderColor: errors.title ? 'inline' : 'hidden'}}>{errors.title}</span>
+            <p className="error" style={{borderColor: errors.title ? 'inline' : 'hidden', backgroundColor: errors.title ? 'lightgoldenrodyellow': 'inherit'}}>{errors.title}</p>
             <label>Images of your collection</label>
             <input type="text" name="collectionImage" defaultValue={collection.collectionImage}/>
             <span></span>
             <label>Description</label> 
             <textarea name="description" style={{borderColor: errors.description ? 'red' : 'inherit'}} defaultValue={collection.description} onBlur={descriptionChangeHandler}></textarea>
-            <span className="error" style={{borderColor: errors.description ? 'inline' : 'hidden'}}>{errors.description}</span>
+            <p className="error" style={{borderColor: errors.description ? 'inline' : 'hidden', backgroundColor: errors.description ? 'lightgoldenrodyellow': 'inherit'}}>{errors.description}</p>
             <button type="submit">Save</button>
           </form>
           </article>
