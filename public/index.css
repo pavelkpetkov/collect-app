@@ -177,3 +177,7 @@ form {
 .delete {
     background-color: red;
 }
+
+.error {
+    color: red;
+}
