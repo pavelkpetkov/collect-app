@@ -6,6 +6,7 @@ Run npm install for the dependencies.
 
 ## Functionality
 - View all collections as guest.
+- Search across all of them.
 - Register, login in application, logout.
 - Create collections.
 - Edit, delete your own ones.
