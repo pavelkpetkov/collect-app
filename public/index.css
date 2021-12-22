@@ -181,3 +181,12 @@ form {
 .error {
     color: red;
 }
+
+.search {
+    border-radius: 7px;
+    height: 1.5rem;
+}
+
+.search:focus {
+    background-color:lightgoldenrodyellow;
+}

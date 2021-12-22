@@ -5,6 +5,7 @@ import Card from './Card';
 const AllCollections = () => {
 
   const [collections, setCollections] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dataService.getAll()
@@ -21,12 +22,23 @@ const AllCollections = () => {
             <h2>All collections</h2>
             <article className="container">
 
-              {collections.map(x => <Card key={x._id} collection={x} />)}
+              {collections
+                .filter((val) => {
+                  if (searchTerm === "") {
+                    return val
+                  } else if (val.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                  } else {
+                    return null
+                  }
+                })
+                .map(x => <Card key={x._id} collection={x} />)}
 
             </article>
+            <input type="text" className="search" placeholder="Search..." onChange={(e) => { setSearchTerm(e.target.value) }} />
           </section>
         )
-        : <h2 style={{color: "white"}}>No collections yet!</h2>
+        : <h2 style={{ color: "white" }}>No collections yet!</h2>
       }
     </>
   )
