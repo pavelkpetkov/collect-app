@@ -41,7 +41,9 @@ const Details = () => {
         <section className="Details">
             <h3>Title: {collection.title}</h3>
             <article>
-                <img alt="CollectionImage" src={collection.collectionImage}></img>
+                { 
+                    collection.collectionImages ?  collection.collectionImages.map(x => <img alt="CollectionImage" src={x}></img>) : null
+                }
             </article>
             <p>Description: {collection.description}</p>
 

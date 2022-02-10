@@ -12,7 +12,7 @@ router.post('/create', isAuth(), async (req, res) => {
 
     const data = {
         title: req.body.title,
-        collectionImage: req.body.collectionImage,
+        collectionImages: req.body.collectionImages,
         description: req.body.description,
         author: req.user._id,
     }
@@ -37,7 +37,7 @@ router.put('/edit/:id', isAuth(), preload(), isOwner(), async (req, res) => {
 
     const updated = {
         title: req.body.title,
-        collectionImage: req.body.collectionImage,
+        collectionImages: req.body.collectionImages,
         description: req.body.description,
     }
 

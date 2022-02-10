@@ -23,12 +23,12 @@ const Edit = () => {
 
     let formData = new FormData(e.currentTarget);
     let title = formData.get('title');
-    let collectionImage = formData.get('collectionImage');
+    let collectionImages = formData.get('collectionImages');
     let description = formData.get('description');
   
     let data = {
       title,
-      collectionImage,
+      collectionImages,
       description,
     }
 
@@ -65,7 +65,7 @@ const Edit = () => {
             <input type="text" style={{borderColor: errors.title ? 'red' : 'inherit'}} name="title" defaultValue={collection.title} onBlur={titleChangeHandler} />
             <p className="error" style={{borderColor: errors.title ? 'inline' : 'hidden', backgroundColor: errors.title ? 'lightgoldenrodyellow': 'inherit'}}>{errors.title}</p>
             <label>Images of your collection</label>
-            <input type="text" name="collectionImage" defaultValue={collection.collectionImage}/>
+            <input type="text" name="collectionImage" defaultValue={collection.collectionImages}/>
             <span></span>
             <label>Description</label> 
             <textarea name="description" style={{borderColor: errors.description ? 'red' : 'inherit'}} defaultValue={collection.description} onBlur={descriptionChangeHandler}></textarea>

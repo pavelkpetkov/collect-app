@@ -18,7 +18,7 @@ const Card = ({
         <div className="overview">
             <h3>{collection.title}</h3>
             <article>
-                <img alt="CollectionImage" src={collection.collectionImage}></img>
+                <img alt="CollectionImage" src={collection.collectionImages[0]}></img>
             </article>
             <p>{collection.description}</p>
             <p>Owner: {owner.username}</p>
