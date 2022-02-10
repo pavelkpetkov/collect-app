@@ -9,7 +9,7 @@ const Edit = () => {
   const { id } = useParams();
   const [collection, setCollection] = useState({});
   const [errors, setErrors] = useState({title: false, description: false});
-
+  const [inputListImages, setInputListImages] = useState([{ image: "" }]);
 
   useEffect(() => {
       dataService.getOne(id)
@@ -23,7 +23,7 @@ const Edit = () => {
 
     let formData = new FormData(e.currentTarget);
     let title = formData.get('title');
-    let collectionImages = formData.get('collectionImages');
+    let collectionImages = formData.getAll('collectionImages');
     let description = formData.get('description');
   
     let data = {
@@ -56,6 +56,16 @@ const Edit = () => {
     }
   }
 
+  const addInputHandler = () => {
+    setInputListImages([...inputListImages, { image: "" }]);
+  }
+
+  const removeInputHandler = (index) => {
+    const list = [...inputListImages];
+    list.splice(index, 1);
+    setInputListImages(list);
+  }
+
     return (
         <section className="Edit">
           <h1>Edit collection</h1>
@@ -65,7 +75,19 @@ const Edit = () => {
             <input type="text" style={{borderColor: errors.title ? 'red' : 'inherit'}} name="title" defaultValue={collection.title} onBlur={titleChangeHandler} />
             <p className="error" style={{borderColor: errors.title ? 'inline' : 'hidden', backgroundColor: errors.title ? 'lightgoldenrodyellow': 'inherit'}}>{errors.title}</p>
             <label>Images of your collection</label>
-            <input type="text" name="collectionImage" defaultValue={collection.collectionImages}/>
+            { collection.collectionImages ?
+              (collection.collectionImages.map((image, index) => (
+                <div key={index}>
+                  <input type="text" id="collectionImages" defaultValue={collection.collectionImages[index]} name="collectionImages" />
+                  {inputListImages.length > 1 && (<span>
+                    <input type="button" value="-" id="addInputImage" onClick={() => removeInputHandler(index)} />
+                  </span>)}
+                  {inputListImages.length < 4 && (<span>
+                    <input type="button" value="+" id="addInputImage" onClick={addInputHandler} />
+                  </span>)}
+                </div>
+              ))) : null
+            }
             <span></span>
             <label>Description</label> 
             <textarea name="description" style={{borderColor: errors.description ? 'red' : 'inherit'}} defaultValue={collection.description} onBlur={descriptionChangeHandler}></textarea>

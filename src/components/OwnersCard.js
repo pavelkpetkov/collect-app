@@ -8,7 +8,7 @@ const OwnersCard = ({
         <div className="overview">
             <h3>{collection.title}</h3>
             <article>
-                <img alt="CollectionImage" src={collection.collectionImages}></img>
+                <img alt="CollectionImage" src={collection.collectionImages[0]}></img>
             </article>
             <p>{collection.description}</p>
             <Link to={`/data/details/${collection._id}`}>Details</Link>

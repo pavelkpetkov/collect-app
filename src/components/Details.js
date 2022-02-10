@@ -42,7 +42,7 @@ const Details = () => {
             <h3>Title: {collection.title}</h3>
             <article>
                 { 
-                    collection.collectionImages ?  collection.collectionImages.map(x => <img alt="CollectionImage" src={x}></img>) : null
+                    collection.collectionImages ?  collection.collectionImages.map((x, index) => <span key={index}><img alt="CollectionImage" src={x}></img></span>) : null
                 }
             </article>
             <p>Description: {collection.description}</p>
