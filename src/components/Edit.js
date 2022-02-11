@@ -80,7 +80,7 @@ const Edit = () => {
                 <div key={index}>
                   <input type="text" id="collectionImages" defaultValue={collection.collectionImages[index]} name="collectionImages" />
                   {inputListImages.length > 1 && (<span>
-                    <input type="button" value="-" id="addInputImage" onClick={() => removeInputHandler(index)} />
+                    <input type="button" value="-" id="removeInputImage" onClick={() => removeInputHandler(index)} />
                   </span>)}
                   {inputListImages.length < 4 && (<span>
                     <input type="button" value="+" id="addInputImage" onClick={addInputHandler} />

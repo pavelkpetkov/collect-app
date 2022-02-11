@@ -70,7 +70,7 @@ const Create = () => {
               <div key={index}>
                 <input type="text" id="collectionImages" placeholder="https://..." name="collectionImages" />
                 {inputListImages.length > 1 && (<span>
-                  <input type="button" value="-" id="addInputImage" onClick={() => removeInputHandler(index)} />
+                  <input type="button" value="-" id="removeInputImage" onClick={() => removeInputHandler(index)} />
                 </span>)}
                 {inputListImages.length < 4 && (<span>
                   <input type="button" value="+" id="addInputImage" onClick={addInputHandler} />

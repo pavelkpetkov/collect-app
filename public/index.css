@@ -190,3 +190,7 @@ form {
 .search:focus {
     background-color:lightgoldenrodyellow;
 }
+
+#addInputImage, #removeInputImage {
+    width: 15px;
+}
