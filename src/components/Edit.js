@@ -9,14 +9,15 @@ const Edit = () => {
   const { id } = useParams();
   const [collection, setCollection] = useState({});
   const [errors, setErrors] = useState({title: false, description: false});
-  const [inputListImages, setInputListImages] = useState([{ image: "" }]);
-
+  
   useEffect(() => {
-      dataService.getOne(id)
-          .then(result => {
-              setCollection(result);
-          })
+    dataService.getOne(id)
+    .then(result => {
+      setCollection(result);
+    })
   }, [id]);
+  
+  const [inputListImages, setInputListImages] = useState([collection.collectionImages]);
 
   const editSubmitHandler = (e) => {
     e.preventDefault();
@@ -63,7 +64,9 @@ const Edit = () => {
   const removeInputHandler = (index) => {
     const list = [...inputListImages];
     list.splice(index, 1);
+    collection.collectionImages.splice(index, 1);
     setInputListImages(list);
+    setCollection(collection);
   }
 
     return (
@@ -76,7 +79,7 @@ const Edit = () => {
             <p className="error" style={{borderColor: errors.title ? 'inline' : 'hidden', backgroundColor: errors.title ? 'lightgoldenrodyellow': 'inherit'}}>{errors.title}</p>
             <label>Images of your collection</label>
             { collection.collectionImages ?
-              (collection.collectionImages.map((image, index) => (
+              (inputListImages.map((image, index) => (
                 <div key={index}>
                   <input type="text" id="collectionImages" defaultValue={collection.collectionImages[index]} name="collectionImages" />
                   {inputListImages.length > 1 && (<span>
