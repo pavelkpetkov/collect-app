@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import * as dataService from '../services/dataService';
 import AuthContext from '../context/authContext';
+import { isAuth } from '../hoc/isAuth';
 
 const Create = () => {
   const { user } = useContext(AuthContext);
@@ -89,4 +90,4 @@ const Create = () => {
   )
 }
 
-export default Create;
+export default isAuth(Create);

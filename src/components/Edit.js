@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import * as dataService from '../services/dataService';
 import AuthContext from "../context/authContext";
+import { isAuth } from '../hoc/isAuth';
 
 const Edit = () => {
   const history = useHistory();
@@ -102,4 +103,4 @@ const Edit = () => {
     )
 }
 
-export default Edit;
+export default isAuth(Edit);
