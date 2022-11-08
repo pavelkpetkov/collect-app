@@ -7,7 +7,7 @@
 
 html {
     height: 100%;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('background.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0px;
@@ -51,7 +51,8 @@ header nav h2 a {
     color: white;
 }
 
-header nav ul li, span {
+header nav ul li,
+span {
     padding: 10px;
 }
 
@@ -68,7 +69,7 @@ header nav ul li a {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 2.5rem;  
+    height: 2.5rem;
 }
 
 .App-footer p {
@@ -89,7 +90,8 @@ main {
     color: white;
 }
 
-.container, .my-collections {
+.container,
+.my-collections {
     display: flex;
 }
 
@@ -100,7 +102,8 @@ main {
     align-items: center;
 }
 
-.overview, .person {
+.overview,
+.person {
     width: 200px;
     height: 350px;
     color: white;
@@ -112,12 +115,15 @@ main {
     text-align: center;
 }
 
-.overview article img, .Details article img {
+.overview article img,
+.Details article img {
     width: 198px;
     height: 200px;
 }
 
-button, .overview a, .Details a {
+button,
+.overview a,
+.Details a {
     padding: 5px;
     margin-top: 20px;
     border: 2px solid gray;
@@ -126,20 +132,25 @@ button, .overview a, .Details a {
     color: white;
 }
 
-.overview a, .Details a {
+.button {
+    margin: 3px;
+}
+
+.overview a,
+.Details a {
     text-decoration: none;
 }
 
 button:hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, .5); 
+    box-shadow: 0 0 11px rgba(33, 33, 33, .5);
 }
 
 .overview a:hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, .5); 
+    box-shadow: 0 0 11px rgba(33, 33, 33, .5);
 }
 
 .Details a:hover {
-    box-shadow: 0 0 11px rgba(33, 33, 33, .5); 
+    box-shadow: 0 0 11px rgba(33, 33, 33, .5);
 }
 
 .overview p {
@@ -147,7 +158,13 @@ button:hover {
     color: white;
 }
 
-.Profile, .Create, .Login, .Register, .All-collections, .Details, .Edit {
+.Profile,
+.Create,
+.Login,
+.Register,
+.All-collections,
+.Details,
+.Edit {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -161,11 +178,14 @@ button:hover {
     box-shadow: 1px 5px 1.50em 5px black;
 }
 
-.Profile, .All-collections {
+.Profile,
+.All-collections {
     height: 550px;
 }
 
-.Login, .Register, .Create {
+.Login,
+.Register,
+.Create {
     height: auto;
 }
 
@@ -188,9 +208,10 @@ form {
 }
 
 .search:focus {
-    background-color:lightgoldenrodyellow;
+    background-color: lightgoldenrodyellow;
 }
 
-#addInputImage, #removeInputImage {
+#addInputImage,
+#removeInputImage {
     width: 15px;
 }
